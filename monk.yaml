@@ -1,0 +1,23 @@
+namespace: games
+
+attogram-games-website-builder:
+  defines: runnable
+  metadata:
+    name: attogram-games-website-builder
+    description: >-
+      A PHP backend service that generates a static website for open source
+      games.
+    icon: https://emojiapi.dev/api/v1/robot.svg
+  containers:
+    attogram-games-website-builder:
+      image: env-3074.registry.local/attogram-games-website-builder:master-166d8c7
+      build: .
+      dockerfile: Dockerfile.attogram-games-website-builder
+  services: {}
+  connections: {}
+  variables: {}
+
+stack:
+  defines: group
+  members:
+    - games/attogram-games-website-builder
