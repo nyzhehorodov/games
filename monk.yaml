@@ -1,0 +1,28 @@
+namespace: games
+
+games-website:
+  defines: runnable
+  metadata:
+    name: games-website
+    description: A PHP web application serving as a games website.
+    icon: https://emojiapi.dev/api/v1/robot.svg
+  containers:
+    games-website:
+      image: env-3251.registry.local/games-website:master-166d8c7
+      build: .
+      dockerfile: Dockerfile.games-website
+  services:
+    http:
+      description: HTTP port for web traffic
+      container: games-website
+      port: 80
+      host-port: 80
+      publish: true
+      protocol: tcp
+  connections: {}
+  variables: {}
+
+stack:
+  defines: group
+  members:
+    - games/games-website

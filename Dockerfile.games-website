@@ -1,0 +1,13 @@
+FROM php:7.4-apache
+
+# Copy source code to /var/www/html
+COPY _build/src/ /var/www/html/
+
+# Install any needed extensions
+RUN docker-php-ext-install pdo pdo_mysql
+
+# Expose port 80
+EXPOSE 80
+
+# Start Apache server
+CMD ["apache2-foreground"]
