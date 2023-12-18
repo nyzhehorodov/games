@@ -1,0 +1,28 @@
+namespace: games
+
+attogram-games-website-builder:
+  defines: runnable
+  metadata:
+    name: attogram-games-website-builder
+    description: PHP-based static site generator for a games website.
+    icon: https://emojiapi.dev/api/v1/robot.svg
+  containers:
+    attogram-games-website-builder:
+      image: env-4297.registry.local/attogram-games-website-builder:master-166d8c7
+      build: .
+      dockerfile: Dockerfile.attogram-games-website-builder
+  services:
+    http:
+      description: Standard HTTP port for web traffic
+      container: attogram-games-website-builder
+      port: 80
+      host-port: 80
+      publish: true
+      protocol: tcp
+  connections: {}
+  variables: {}
+
+stack:
+  defines: group
+  members:
+    - games/attogram-games-website-builder
