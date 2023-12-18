@@ -1,0 +1,16 @@
+FROM php:7.4-apache
+
+# Copy the application files to the container
+COPY _build/ /var/www/html/
+
+# Expose port 80
+EXPOSE 80
+
+# Set the working directory to the Apache web root
+WORKDIR /var/www/html
+
+# Install any needed extensions
+RUN docker-php-ext-install pdo pdo_mysql
+
+# Start Apache in the foreground
+CMD ["apache2-foreground"]
