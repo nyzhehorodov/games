@@ -1,0 +1,17 @@
+FROM php:7.4-apache
+
+# Copy application source
+COPY . /var/www/html
+
+# Install Composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+# Install dependencies
+WORKDIR /var/www/html
+RUN composer install --no-dev --no-scripts
+
+# Expose port 80
+EXPOSE 80
+
+# Start Apache server
+CMD ["apache2-foreground"]
